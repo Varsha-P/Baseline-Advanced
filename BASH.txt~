@@ -1,0 +1,11 @@
+BASELINE FEATURES:
+for file in data/train/*; do python3 create_baseline_features.py $file >> results.txt; done
+
+for file in data/train/*; do python3 create_advanced_features.py $file >> advresults.txt; done
+
+
+
+ADVANCED FEATURES:
+for file in data/test/*; do python3 baseline_for_test_data.py $file >> test_results.txt; done
+
+for file in data/test/*; do python3 advanced_for_test_data.py $file >> test_results_adv.txt; done

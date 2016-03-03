@@ -1,0 +1,36 @@
+Assignment 3 Report
+
+Name: VARSHA PATTIPATI
+
+1. What I turned in, what it does, and how to run it
+
+ANSWER:	I have used the functions from hw3_corpus_tool.py in both create_baseline_features.py and create_advanced_features.py to read the csv files. I called the get_utterances_from_filename function on the file specified in the argument.
+
+BASH.txt: This file has the BASH commands(TO BE RUN IN THE COMMAND PROMPT) used for appending results from multiple files into one which is then given as input to CRFsuite.
+
+
+2. How I evaluated my baseline and advanced features
+
+ANSWER:	I used k-fold cross-validation to evaluate both baseline and advanced features with k=3. 
+CRFsuite has an option to perform k-fold cross-validation with the following command:
+	crfsuite learn -g3 -x trainfile.txt   (for 3-fold validation)
+It gives the accuracy after each fold. I calculated the average of the accuracies obtained to evaluated my features.
+
+3. Description of advanced feature set
+
+ANSWER:	a.) I have used tri-grams to generate features for the advanced part of the homework. For example, if the dialogue utterance is "Bruno is my dog", my baseline feature features are 'token_Bruno', 'token_is', 'token_my' and 'token_dog'.
+But my advanced- feature features would be 'token___token___token_Bruno', 'token___token_Bruno_token_is', 'token_Bruno_token_is_token_my', 'token_is_token_my_token_dog', 'token_my_token_dog_token__', and 'token_dog_token___token__'
+b.) I also used the pos tags, speaker changed and first occurance features in my advanced features
+
+
+4. How I developed my advanced feature set
+
+ANSWER:	I kept track of the previous two tokens in the dialogue sequence using two variables a and b. Initial values of both a and b are "token__". I changed them at the end of every iteration ie., a becomes b and b becomes the current token in the loop. The statement  print(a+'_'+b+'_'+word,end="\t")   would then print the tri-grams required.
+PS: 'word' is the current token in the loop.
+
+
+5. Results
+
+ANSWER:	Accuracy of baseline features: 72.89% (fold1: 73.02%, fold2: 72.83%, fold3: 72.82%)
+	Accuracy of advanced features: 73.98% (fold1: 73.95%, fold2: 73.73%, fold3: 74.27%)
+
